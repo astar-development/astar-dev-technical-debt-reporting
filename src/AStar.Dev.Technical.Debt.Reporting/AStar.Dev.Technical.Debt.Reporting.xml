@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AStar.Dev.Technical.Debt.Reporting</name>
+    </assembly>
+    <members>
+        <member name="T:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute">
+            <summary>
+                The <see cref="T:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute" /> attribute - can be applied multiple times to cover multiple issues
+            </summary>
+            <param name="hoursToResolve">The estimated hours to resolve</param>
+            <param name="painEstimate">The estimated pain level</param>
+            <param name="description">The description of the refactoring to be performed</param>
+        </member>
+        <member name="M:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute.#ctor(System.Int32,System.Int32,System.String)">
+            <summary>
+                The <see cref="T:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute" /> attribute - can be applied multiple times to cover multiple issues
+            </summary>
+            <param name="hoursToResolve">The estimated hours to resolve</param>
+            <param name="painEstimate">The estimated pain level</param>
+            <param name="description">The description of the refactoring to be performed</param>
+        </member>
+        <member name="P:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute.HoursToResolve">
+            <summary>
+                The estimated hours to resolve
+            </summary>
+        </member>
+        <member name="P:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute.Description">
+            <summary>
+                Gets the description of the refactoring to be performed
+            </summary>
+        </member>
+        <member name="P:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute.PainEstimate">
+            <summary>
+                The estimated pain level - quantity to be defined
+            </summary>
+        </member>
+        <member name="P:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute.RelativeBenefitToFix">
+            <summary>
+                Gets the calculated relative benefit of fixing / refactoring
+            </summary>
+        </member>
+        <member name="T:AStar.Dev.Technical.Debt.Reporting.Reporter">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:AStar.Dev.Technical.Debt.Reporting.Reporter.GenerateReport(System.Reflection.Assembly[])">
+            <summary>
+            </summary>
+            <param name="assemblies"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AStar.Dev.Technical.Debt.Reporting.Reporter.AssertMaxPainNotExceeded(System.Reflection.Assembly,System.Int32)">
+            <summary>
+            </summary>
+            <param name="assemblyToReportOn"></param>
+            <param name="maxAllowablePain"></param>
+            <exception cref="T:AStar.Dev.Technical.Debt.Reporting.TechDebtPainExceededException"></exception>
+        </member>
+        <member name="T:AStar.Dev.Technical.Debt.Reporting.TechDebtPainExceededException">
+            <summary>
+            </summary>
+        </member>
+    </members>
+</doc>

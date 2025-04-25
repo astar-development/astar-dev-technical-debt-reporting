@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2FF97A69-79AF-4C24-8352-C2E93DC376FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BB5E3E3C-C7B3-4439-B31C-E80740193BBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.Dev.Technical.Debt.Reporting", "src\AStar.Dev.Technical.Debt.Reporting\AStar.Dev.Technical.Debt.Reporting.csproj", "{E8896F23-6E6B-43C2-873E-18F3D9048CCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar.Dev.Technical.Debt.Reporting.Tests.Unit", "test\AStar.Dev.Technical.Debt.Reporting.Tests.Unit\AStar.Dev.Technical.Debt.Reporting.Tests.Unit.csproj", "{465DAD51-4EB7-423A-AD48-FC831B4604C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{0110AFCB-7E0A-4E2A-A147-60A8A26830FD}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{5D043299-B752-4623-855D-4298D189E794}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoClassLibrary", "test\DemoClassLibrary\DemoClassLibrary.csproj", "{9009044D-AA46-4843-A484-C9FB7D986559}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E8896F23-6E6B-43C2-873E-18F3D9048CCF} = {2FF97A69-79AF-4C24-8352-C2E93DC376FD}
+		{465DAD51-4EB7-423A-AD48-FC831B4604C8} = {BB5E3E3C-C7B3-4439-B31C-E80740193BBA}
+		{5D043299-B752-4623-855D-4298D189E794} = {0110AFCB-7E0A-4E2A-A147-60A8A26830FD}
+		{9009044D-AA46-4843-A484-C9FB7D986559} = {BB5E3E3C-C7B3-4439-B31C-E80740193BBA}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8896F23-6E6B-43C2-873E-18F3D9048CCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8896F23-6E6B-43C2-873E-18F3D9048CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8896F23-6E6B-43C2-873E-18F3D9048CCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8896F23-6E6B-43C2-873E-18F3D9048CCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{465DAD51-4EB7-423A-AD48-FC831B4604C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{465DAD51-4EB7-423A-AD48-FC831B4604C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{465DAD51-4EB7-423A-AD48-FC831B4604C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{465DAD51-4EB7-423A-AD48-FC831B4604C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9009044D-AA46-4843-A484-C9FB7D986559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9009044D-AA46-4843-A484-C9FB7D986559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9009044D-AA46-4843-A484-C9FB7D986559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9009044D-AA46-4843-A484-C9FB7D986559}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
