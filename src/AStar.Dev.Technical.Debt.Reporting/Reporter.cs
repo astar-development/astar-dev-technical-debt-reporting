@@ -15,9 +15,9 @@ public static class Reporter
     {
         try
         {
-            IEnumerable<MemberInfo> typesWithTechDebt = FindTypesWithTechDebt(assemblies);
-            MemberInfo[]            x                 = typesWithTechDebt.ToArray();
-            IEnumerable<ReportLine> reportLines       = GenerateReportLines(x);
+            var typesWithTechDebt = FindTypesWithTechDebt(assemblies);
+            var            x                 = typesWithTechDebt.ToArray();
+            var reportLines       = GenerateReportLines(x);
 
             return RenderReportLinesToTextReport(reportLines);
         }
@@ -32,17 +32,17 @@ public static class Reporter
     /// <summary>
     /// </summary>
     /// <param name="assemblyToReportOn"></param>
-    /// <param name="maxAllowableMain"></param>
+    /// <param name="maxAllowablePain"></param>
     /// <exception cref="TechDebtPainExceededException"></exception>
-    public static void AssertMaxPainNotExceeded(Assembly assemblyToReportOn, int maxAllowableMain)
+    public static void AssertMaxPainNotExceeded(Assembly assemblyToReportOn, int maxAllowablePain)
     {
-        IEnumerable<MemberInfo> typesWithDebt = FindAllTheTypesThatHaveTechDebt(assemblyToReportOn);
+        var typesWithTechnicalDebt = FindAllTheTypesThatHaveTechDebt(assemblyToReportOn);
 
-        int totalPain = (from t in typesWithDebt
+        var totalPain = (from t in typesWithTechnicalDebt
                          let techDebtAttribute = (RefactorAttribute)t.GetCustomAttributes(typeof(RefactorAttribute), false)[0]
                          select techDebtAttribute).Sum(x => x.PainEstimate);
 
-        if (totalPain > maxAllowableMain)
+        if (totalPain > maxAllowablePain)
         {
             throw new TechDebtPainExceededException();
         }
@@ -51,15 +51,14 @@ public static class Reporter
     private static IEnumerable<MemberInfo> FindTypesWithTechDebt(IEnumerable<Assembly> assemblies) =>
         assemblies.SelectMany(FindAllTheTypesThatHaveTechDebt);
 
-    private static IEnumerable<MemberInfo> FindAllTheTypesThatHaveTechDebt(Assembly assembly)
-    {
-        return assembly.GetTypes()
-                       .SelectMany(type => type.GetMembers())
-                       .Union(assembly.GetTypes())
-                       .Where(type => Attribute.IsDefined(type, typeof(RefactorAttribute)));
-    }
+    private static IEnumerable<MemberInfo> FindAllTheTypesThatHaveTechDebt(Assembly assembly) =>
+        assembly.GetTypes()
+                .SelectMany(type => type.GetMembers())
+                .Union(assembly.GetTypes())
+                .Where(type => Attribute.IsDefined(type, typeof(RefactorAttribute)))
+                .ToList();
 
-    private static IEnumerable<ReportLine> GenerateReportLines(IEnumerable<MemberInfo> typesWithTechDebt) =>
+    private static List<ReportLine> GenerateReportLines(IEnumerable<MemberInfo> typesWithTechDebt) =>
         typesWithTechDebt.Select(type => new { type, techDebtAttribute = (RefactorAttribute) type.GetCustomAttributes(typeof (RefactorAttribute), false)[0], })
                          .Select(t => new ReportLine
                                       {
@@ -76,7 +75,7 @@ public static class Reporter
 
         sb.AppendLine();
 
-        foreach (ReportLine item in reportLines.OrderByDescending(x => x.Attribute.RelativeBenefitToFix))
+        foreach (var item in reportLines.OrderByDescending(x => x.Attribute.RelativeBenefitToFix))
         {
             sb.AppendLine(item.ToString());
             count++;
@@ -89,20 +88,14 @@ public static class Reporter
         return count > 0 ? sb.ToString() : string.Empty;
     }
 
-    private class ReportLine
+    private sealed class ReportLine
     {
         public required string?           TypeOrMemberName { get;  init; }
         public required RefactorAttribute Attribute        { get;  init; }
-        public          string?           ReflectedType    { get ; set ; }
-        public          string?           Assembly         { get ; set ; }
+        public          string?           ReflectedType    { get ; init ; }
+        public          string?           Assembly         { get ; init ; }
 
         public override string ToString() =>
             $"Relative Benefit to fix: {Attribute.RelativeBenefitToFix:0.#} {Attribute.Description} {TypeOrMemberName} ({ReflectedType} - {Assembly}) Pain: {Attribute.PainEstimate} Effort to fix: {Attribute.HoursToResolve}";
     }
-}
-
-/// <summary>
-/// </summary>
-public class TechDebtPainExceededException : Exception
-{
 }

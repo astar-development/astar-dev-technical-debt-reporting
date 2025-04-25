@@ -6,9 +6,7 @@
     <members>
         <member name="T:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute">
             <summary>
-                The
-                <see cref="T:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute"/>
-                attribute - can be applied multiple times to cover multiple issues
+                The <see cref="T:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute" /> attribute - can be applied multiple times to cover multiple issues
             </summary>
             <param name="hoursToResolve">The estimated hours to resolve</param>
             <param name="painEstimate">The estimated pain level</param>
@@ -16,9 +14,7 @@
         </member>
         <member name="M:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute.#ctor(System.Int32,System.Int32,System.String)">
             <summary>
-                The
-                <see cref="T:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute"/>
-                attribute - can be applied multiple times to cover multiple issues
+                The <see cref="T:AStar.Dev.Technical.Debt.Reporting.RefactorAttribute" /> attribute - can be applied multiple times to cover multiple issues
             </summary>
             <param name="hoursToResolve">The estimated hours to resolve</param>
             <param name="painEstimate">The estimated pain level</param>
@@ -58,7 +54,7 @@
             <summary>
             </summary>
             <param name="assemblyToReportOn"></param>
-            <param name="maxAllowableMain"></param>
+            <param name="maxAllowablePain"></param>
             <exception cref="T:AStar.Dev.Technical.Debt.Reporting.TechDebtPainExceededException"></exception>
         </member>
         <member name="T:AStar.Dev.Technical.Debt.Reporting.TechDebtPainExceededException">
