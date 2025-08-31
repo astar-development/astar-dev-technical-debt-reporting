@@ -12,6 +12,7 @@ jobs:
     name: Build and analyze
     runs-on: windows-latest
     env:
+      SONAR_PROJECT: 'astar-dev-technical-debt-reporting'
       ProjectName: 'AStar.Dev.Technical.Debt.Reporting'
       RepositoryName: 'astar-dev-technical-debt-reporting'
     steps:
@@ -26,14 +27,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Cache SonarCloud packages
+      - name: 🛠 Cache SonarQube Cloud packages
         uses: actions/cache@v4.2.3
         with:
           path: ~\sonar\cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-      - name: Cache SonarCloud scanner
+      - name: 🛠 Cache SonarQube Cloud scanner
         id: cache-sonar-scanner
         uses: actions/cache@v4.2.3
         with:
@@ -41,30 +42,21 @@ jobs:
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
 
-      - name: Install SonarCloud scanner
+      - name: 🛠 Install SonarQube Cloud scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: powershell
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
-      - name: Build and analyze
+      - name: 🔍 Restore, 🛠 Build and 🧪 Test with ☁️ SonarCloud / Qube
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
           dotnet tool install --global dotnet-coverage
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"astar-development_${{ env.RepositoryName }}" /o:"astar-development" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"astar-development_${{ env.SONAR_PROJECT }}" /o:"astar-development" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml /d:sonar.scanner.scanAll=false /d:sonar.scanner.skipJreProvisioning=true
           dotnet build --configuration Release
-          dotnet-coverage collect 'dotnet test --filter "FullyQualifiedName!~Acceptance.Tests"' -f xml -o 'coverage.xml'
+          dotnet-coverage collect 'dotnet test --filter "FullyQualifiedName!~Tests.EndToEnd"' -f xml -o 'coverage.xml'
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-
-      - name: Pack NuGet package
-        if: github.ref == 'refs/heads/main'
-        run: dotnet pack .\src\${{ env.ProjectName }}\${{ env.ProjectName }}.csproj
-
-      - name: Push to NuGet
-        if: github.ref == 'refs/heads/main'
-        run: dotnet nuget push "**\${{ env.ProjectName }}.*.nupkg" --api-key ${{secrets.nuget_api_key}} --skip-duplicate --source https://api.nuget.org/v3/index.json
-

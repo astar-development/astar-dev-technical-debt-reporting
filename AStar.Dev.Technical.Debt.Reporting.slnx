@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/.github/">
+    <File Path=".github/dependabot.yml" />
+  </Folder>
+  <Folder Name="/.github/workflows/">
+    <File Path=".github/workflows/dotnet.yml" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/AStar.Dev.Technical.Debt.Reporting/AStar.Dev.Technical.Debt.Reporting.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/AStar.Dev.Technical.Debt.Reporting.Tests.Unit/AStar.Dev.Technical.Debt.Reporting.Tests.Unit.csproj" />
+    <Project Path="test/DemoClassLibrary/DemoClassLibrary.csproj" />
+  </Folder>
+</Solution>
