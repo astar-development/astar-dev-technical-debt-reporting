@@ -15,7 +15,7 @@
         <RepositoryUrl>https://github.com/astar-development/astar-dev-technical-debt-reporting.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <Description>Initially, just an attribute to mark code as having technical debt. Later versions will extend this package to include reporting and tests that can be used to monitor the total Technical Debt.</Description>
-        <Version>0.2.0</Version>
+        <Version>0.2.1</Version>
         <Authors>AStar Development, Jason Barden</Authors>
         <RepositoryType>git</RepositoryType>
         <IncludeSymbols>True</IncludeSymbols>
@@ -23,7 +23,8 @@
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <DocumentationFile>$(AssemblyName).xml</DocumentationFile>
-        <PackageReleaseNotes>Initial attribute only.</PackageReleaseNotes>
+        <PackageReleaseNotes>Fix missing package icon.</PackageReleaseNotes>
+        <PackageIcon>astar.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
