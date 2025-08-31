@@ -1,12 +1,12 @@
 namespace AStar.Dev.Technical.Debt.Reporting;
 
 /// <summary>
-///     The <see cref="RefactorAttribute" /> attribute - can be applied multiple times to cover multiple issues
+///     The <see cref="RefactorAttribute" /> attribute
 /// </summary>
-/// <param name="hoursToResolve">The estimated hours to resolve</param>
-/// <param name="painEstimate">The estimated pain level</param>
+/// <param name="painEstimate">The estimated hours to resolve</param>
+/// <param name="hoursToResolve">The estimated pain level</param>
 /// <param name="description">The description of the refactoring to be performed</param>
-[AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
+[AttributeUsage(AttributeTargets.All, Inherited = false)]
 public sealed class RefactorAttribute(int painEstimate, int hoursToResolve, string description) : Attribute
 {
     /// <summary>
@@ -23,9 +23,4 @@ public sealed class RefactorAttribute(int painEstimate, int hoursToResolve, stri
     ///     The estimated pain level - quantity to be defined
     /// </summary>
     public int PainEstimate => painEstimate;
-
-    /// <summary>
-    ///     Gets the calculated relative benefit of fixing / refactoring
-    /// </summary>
-    public double RelativeBenefitToFix => (double)PainEstimate / HoursToResolve;
 }
