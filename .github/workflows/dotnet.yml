@@ -46,7 +46,7 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
 
-      - name: 🔍 Restore, 🛠 Build and 🧪 Test with ☁️ SonarCloud / Qube project: ${{ env.SONAR_PROJECT_NAME }}
+      - name: 🔍 Restore, 🛠 Build and 🧪 Test with ☁️ SonarCloud / Qube project - ${{ env.SONAR_PROJECT_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
