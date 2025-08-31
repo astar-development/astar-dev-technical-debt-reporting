@@ -8,8 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    env:
-      ProjectName: 'AStar.Dev.Utilities'
 
     steps:
       - name: 🧾 Checkout code
@@ -26,8 +24,8 @@ jobs:
       - name: 🛠 Build solution
         run: dotnet build --configuration Release
 
-      - name: 📦 Pack NuGet package
-        run: dotnet pack ./src/${{ env.ProjectName }}/${{ env.ProjectName }}.csproj --configuration Release --output ./nupkg
+      - name: 📦 Pack NuGet package for ${{ vars.PROJECT_NAME }}
+        run: dotnet pack ./src/${{ vars.PROJECT_NAME }}/${{ vars.PROJECT_NAME }}.csproj --configuration Release --output ./nupkg
 
       - name: 🚀 Publish to NuGet.org
         run: dotnet nuget push ./nupkg/*.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NuGet_API_Key }} #
